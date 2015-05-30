@@ -29,7 +29,6 @@ public class JFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -56,17 +55,6 @@ public class JFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Notepad Minus Minus");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         jButton1.setText("Save File");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +78,7 @@ public class JFrame extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "File Extension", "Text File", "HTML File", "Jave File" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "File Extension", "HTML File", "Java File", "Python File", "Text File" }));
 
         jTextArea1.setColumns(20);
         jTextArea1.setLineWrap(true);
@@ -128,11 +116,6 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(2, 2, 2)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jTextField2)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,11 +131,6 @@ public class JFrame extends javax.swing.JFrame {
                         .addComponent(jComboBox1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 147, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 147, Short.MAX_VALUE)))
         );
 
         pack();
@@ -169,18 +147,7 @@ public class JFrame extends javax.swing.JFrame {
         String name = jTextField1.getText();
         String masterpath = path.replace("\\", "\\\\");
            if(jTabbedPane1.getSelectedIndex()==0){
-            if(ext.toString().equals("Java File")){
-                try{
-                    FileWriter file = new FileWriter(path + name + ".java");
-                    file.write(jTextArea1.getText());
-                    file.close();
-                    }
-                catch (IOException e) 
-                {
-                e.printStackTrace();
-                }
-            }
-               else if(ext.toString().equals("HTML File")){
+            if(ext.toString().equals("HTML File")){
                 try{
                     FileWriter file = new FileWriter(path + name + ".html");
                     file.write(jTextArea1.getText());
@@ -191,9 +158,9 @@ public class JFrame extends javax.swing.JFrame {
                 e.printStackTrace();
                 }
             }
-           else if(ext.toString().equals("Text File")){
+               else if(ext.toString().equals("Java File")){
                 try{
-                    FileWriter file = new FileWriter(path + name + ".text");
+                    FileWriter file = new FileWriter(path + name + ".java");
                     file.write(jTextArea1.getText());
                     file.close();
                     }
@@ -202,24 +169,35 @@ public class JFrame extends javax.swing.JFrame {
                 e.printStackTrace();
                 }
             }
+               else if(ext.toString().equals("Python File")){
+                    try{
+                        FileWriter file = new FileWriter(path + name + ".py");
+                        file.write(jTextArea2.getText());
+                        file.close();
+                        }
+                    catch (IOException e) 
+                    {
+                        e.printStackTrace();
+                    }
+                }   
+                else if(ext.toString().equals("Text File")){
+                    try{
+                        FileWriter file = new FileWriter(path + name + ".text");
+                        file.write(jTextArea1.getText());
+                        file.close();
+                     }
+                    catch (IOException e) 
+                    {
+                        e.printStackTrace();
+                    }
+                }
        
-           else{
+                else{
                JOptionPane.showMessageDialog(null,"That is not a supportted file format. Please choose one from the drop down menu.");
-            }
+                }
          }
            else if(jTabbedPane1.getSelectedIndex()==1){
-               if(ext.toString().equals("Java File")){
-                try{
-                    FileWriter file = new FileWriter(path + name + ".java");
-                    file.write(jTextArea2.getText());
-                    file.close();
-                    }
-                catch (IOException e) 
-                {
-                e.printStackTrace();
-                }
-            }
-               else if(ext.toString().equals("HTML File")){
+               if(ext.toString().equals("HTML File")){
                 try{
                     FileWriter file = new FileWriter(path + name + ".html");
                     file.write(jTextArea2.getText());
@@ -230,7 +208,29 @@ public class JFrame extends javax.swing.JFrame {
                 e.printStackTrace();
                 }
             }
-           else if(ext.toString().equals("Text File")){
+               else if(ext.toString().equals("Java File")){
+                try{
+                    FileWriter file = new FileWriter(path + name + ".java");
+                    file.write(jTextArea2.getText());
+                    file.close();
+                    }
+                catch (IOException e) 
+                {
+                e.printStackTrace();
+                }
+            }
+               else if(ext.toString().equals("Python File")){
+                try{
+                    FileWriter file = new FileWriter(path + name + ".py");
+                    file.write(jTextArea2.getText());
+                    file.close();
+                    }
+                catch (IOException e) 
+                {
+                e.printStackTrace();
+                }
+            }
+                else if(ext.toString().equals("Text File")){
                 try{
                     FileWriter file = new FileWriter(path + name + ".text");
                     file.write(jTextArea2.getText());
@@ -324,7 +324,6 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
